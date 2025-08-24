@@ -2,6 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  base: '/accounting-site/',
+  base: process.env.NODE_ENV === 'production' ? '/accounting-site/' : '/',
   plugins: [vue()]
 })

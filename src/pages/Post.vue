@@ -12,9 +12,8 @@ import { useRoute } from 'vue-router'
 
 const post = ref(null)
 const route = useRoute()
-
+const base = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL
 onMounted(async () => {
-  const base = import.meta.env.BASE_URL
   const res = await fetch(base + 'posts.json')
   const posts = await res.json()
   post.value = posts.find(p => p.id === Number(route.params.id))
