@@ -14,7 +14,8 @@ const post = ref(null)
 const route = useRoute()
 
 onMounted(async () => {
-  const res = await fetch('/posts.json')
+  const base = import.meta.env.BASE_URL
+  const res = await fetch(base + 'posts.json')
   const posts = await res.json()
   post.value = posts.find(p => p.id === Number(route.params.id))
 })
