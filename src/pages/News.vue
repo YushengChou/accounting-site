@@ -10,9 +10,9 @@ import { ref, onMounted } from 'vue'
 import PostCard from '../components/PostCard.vue'
 
 const posts = ref([])
-
+const base = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL
 onMounted(async () => {
-  const res = await fetch('/posts.json')
+  const res = await fetch(base + 'posts.json')
   posts.value = await res.json()
 })
 </script>
