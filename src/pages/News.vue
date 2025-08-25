@@ -1,11 +1,15 @@
 <template>
   <div class="container">
+    <button class="back-btn" @click="goBack">
+      ← 返回
+    </button>
     <h1>最新消息</h1>
     <PostCard v-for="post in posts" :key="post.id" :post="post" />
   </div>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import PostCard from '../components/PostCard.vue'
 
@@ -15,12 +19,28 @@ onMounted(async () => {
   const res = await fetch(base + 'posts.json')
   posts.value = await res.json()
 })
+const router = useRouter()
+const goBack = () => {
+  router.back()
+}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 2rem;
+  h1 {
+    text-align: center;
+  }
+  .back-btn {
+    color: #000;
+    font-size: 14px;
+    cursor: pointer;
+  
+    &:hover {
+      color: var(--color-red);
+    }
+  }
 }
 </style>
