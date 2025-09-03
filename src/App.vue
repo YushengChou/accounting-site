@@ -1,6 +1,8 @@
 <template>
   <header class="navbar">
-    <div class="logo">和得會計師事務所</div>
+    <router-link to="/" class="logo">
+      <img class="img" src="@/assets/img/logo-name.png" />
+    </router-link>
 
     <button class="hamburger" @click="toggleMenu">
       <span></span><span></span><span></span>
@@ -29,6 +31,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+// import logo from '@/assets/img/logo.png'
 
 const menuOpen = ref(false)
 const isDesktop = ref(window.innerWidth >= 769)
@@ -87,7 +90,7 @@ const toggleDark = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 2rem;
   background: var(--color-bg-secondary);
   border-bottom: 2px solid var(--color-red);
   position: relative;
@@ -95,6 +98,9 @@ const toggleDark = () => {
     font-weight: bold;
     font-size: 1.3rem;
     color: var(--color-bg);
+    .img {
+      width: 100px;
+    }
   }
   .hamburger {
     display: none;
