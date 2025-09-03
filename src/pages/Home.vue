@@ -182,5 +182,8 @@ const services = [
     }
   }
 }
-
+// 深色模式的地圖
+.dark .map-container iframe {
+  filter: invert(90%) hue-rotate(180deg);
+}
 </style>
