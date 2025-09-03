@@ -30,11 +30,12 @@ const goBack = () => {
   max-width: 1200px;
   margin: auto;
   padding: 2rem;
+  color: var(--color-bg);
   h1 {
     text-align: center;
   }
   .back-btn {
-    color: #000;
+    color: var(--color-bg);
     font-size: 14px;
     cursor: pointer;
   

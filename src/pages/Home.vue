@@ -19,7 +19,7 @@ const services = [
 <template>
   <div class="home">
     <h1 class="title">和得會計師事務所</h1>
-    <p>提供財務、稅務、工商登記、財務顧問、企業管理顧問服務</p>
+    <p class="sub-title">提供財務、稅務、工商登記、財務顧問、企業管理顧問服務</p>
 
     <section class="values-section">
       <div class="container">
@@ -85,9 +85,12 @@ const services = [
     font-weight: bold;
     margin-bottom: 1rem;
   }
+  .sub-title {
+    color: var(--color-text-secondary);
+  }
   .values-section {
     padding: 1rem;
-    background: #fff;
+    background: var(--color-bg-secondary);;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     .container {
@@ -109,37 +112,44 @@ const services = [
     .card {
       flex: 1 1 250px; // 最小寬 250px，自動撐開
       max-width: 300px;
-      background: #fff;
+      background: var(--color-bg-secondary);
       border-radius: 8px;
       padding: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-card);
       text-align: center;
       h3 {
         margin-bottom: 0.5rem;
-        color: #000;
+        color: var(--color-bg);
       }
       p {
-        color: #333;
+        color: var(--color-text-secondary);
         font-size: 0.95rem;
         line-height: 1.6;
         text-align: left;
+      }
+    }
+    @media (max-width: 768px) {
+      .card-flex {
+        justify-content: center;
       }
     }
   }
   .contact {
     margin-top: 3rem;
     padding: 1rem;
-    background: #fff;
+    background: var(--color-bg-secondary);
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-card);
     h2 {
       text-align: center;
       margin: 1rem 0;
       font-size: 2rem;
+      color: var(--color-bg);
     }
     .container {
       display: flex;
       justify-content: space-between;
+      color: var(--color-bg);
       .social-icons {
         display: flex;
         gap: 1.25rem;
