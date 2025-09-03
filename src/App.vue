@@ -46,6 +46,10 @@ const toggleMenu = () => {
 
 onMounted(() => {
   window.addEventListener('resize', handleResize)
+  if (localStorage.getItem('theme') === 'dark') {
+    isDark.value = true
+    document.documentElement.classList.add('dark')
+  }
 })
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
