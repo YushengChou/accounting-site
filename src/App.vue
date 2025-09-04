@@ -16,6 +16,7 @@
       <nav v-show="menuOpen || isDesktop" class="nav-links">
         <router-link to="/" @click="menuOpen = false">首頁</router-link>
         <router-link to="/news" @click="menuOpen = false">最新消息</router-link>
+        <router-link to="/aboutus" @click="menuOpen = false">團隊介紹</router-link>
         <!-- 亮暗色切換按鈕 -->
         <!-- <a @click="toggleDark" class="theme-toggle">
           {{ isDark ? '☀️' : '🌙' }}

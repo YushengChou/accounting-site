@@ -1,47 +1,36 @@
 <template>
-  <div class="container">
-    <button class="back-btn" @click="goBack">
-      ← 返回
-    </button>
-    <h1>最新消息</h1>
-    <PostCard v-for="post in posts" :key="post.id" :post="post" />
+  <div>
+    <BackBtn></BackBtn>
+    <div class="container">
+      <h1>最新消息</h1>
+      <PostCard v-for="post in posts" :key="post.id" :post="post" />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
+import BackBtn from '../components/shared/BackBtn.vue'
 import PostCard from '../components/PostCard.vue'
 
 const posts = ref([])
 const base = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL
 onMounted(async () => {
   const res = await fetch(base + 'posts.json')
-  posts.value = await res.json()
+  const data = await res.json()
+  // 最新的放前面
+  posts.value = data.reverse()
 })
-const router = useRouter()
-const goBack = () => {
-  router.back()
-}
 </script>
 
 <style scoped lang="scss">
 .container {
   max-width: 1200px;
   margin: auto;
-  padding: 2rem;
+  padding: 20px;
   color: var(--color-bg);
   h1 {
     text-align: center;
-  }
-  .back-btn {
-    color: var(--color-bg);
-    font-size: 14px;
-    cursor: pointer;
-  
-    &:hover {
-      color: var(--color-red);
-    }
   }
 }
 </style>
