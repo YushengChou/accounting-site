@@ -26,7 +26,7 @@ onMounted(async () => {
 <style scoped lang="scss">
 .container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   padding: 20px;
   color: var(--color-bg);
   h1 {
