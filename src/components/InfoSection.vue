@@ -1,5 +1,6 @@
 <script setup>
 import Title from '../components/shared/Title.vue'
+import ServiceTarget from '../components/shared/ServiceTarget.vue'
 defineProps({
   title: {
     type: String,
@@ -8,6 +9,9 @@ defineProps({
   infoList: {
     type: Array,
     required: true
+  },
+  twoCol: {
+    type: Boolean,
   }
 })
 </script>
@@ -17,11 +21,9 @@ defineProps({
     <div class="container">
       <Title :title="title"></Title>
       <div v-for="(infoItem, index) in infoList" :key="index" class="card-container">
-        <div v-if="infoItem.target" class="target">
-          <strong>服務對象： </strong>{{ infoItem.target }}
-        </div>
+        <ServiceTarget v-if="infoItem.target" :target="infoItem.target"></ServiceTarget>
         <div class="card-inside">
-          <div v-for="(category, i) in infoItem.categories" :key="i" class="card">
+          <div v-for="(category, i) in infoItem.categories" :key="i" :class="{twoCard: twoCol}" class="card">
             <h3>{{ category.name || category.title }}</h3>
             <p>{{ category.desc }}</p>
             <ul>
@@ -44,7 +46,7 @@ defineProps({
     margin: 0 auto;
     .card-container {
       color: var(--color-bg);
-      margin-bottom: 20px;
+      margin-bottom: 40px;
       .target {
         margin-bottom: 20px;
       }
@@ -58,10 +60,22 @@ defineProps({
           padding: 20px;
           border-radius: 8px;
           box-shadow: var(--shadow-card);
+          h3 {
+            font-size: 28px;
+          }
+          p {
+            font-size: 24px;
+          }
           ul {
             list-style-type: disc;
             padding-left: 20px;
+            li {
+              font-size: 24px;
+            }
           }
+        }
+        .twoCard.card {
+          flex: 1 1 calc((100% - 30px)/2);
         }
         @media (max-width: 1024px) {
           .card {
@@ -69,7 +83,7 @@ defineProps({
           }
         }
         @media (max-width: 600px) {
-          .card {
+          .card, .twoCard.card {
             flex: 1 1 100%;
           }
         }

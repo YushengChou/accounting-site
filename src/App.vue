@@ -1,7 +1,7 @@
 <template>
   <header class="navbar">
     <router-link to="/" class="logo">
-      <img class="img" src="@/assets/img/logo-name.png" />
+      <img class="img" src="@/assets/img/logo.png" />
     </router-link>
 
     <button class="hamburger" @click="toggleMenu">
@@ -16,11 +16,11 @@
       <nav v-show="menuOpen || isDesktop" class="nav-links">
         <router-link to="/" @click="menuOpen = false">首頁</router-link>
         <router-link to="/news" @click="menuOpen = false">最新消息</router-link>
-        <router-link to="/aboutus" @click="menuOpen = false">團隊介紹</router-link>
+
         <!-- 亮暗色切換按鈕 -->
-        <!-- <a @click="toggleDark" class="theme-toggle">
+        <a @click="toggleDark" class="theme-toggle">
           {{ isDark ? '☀️' : '🌙' }}
-        </a> -->
+        </a>
       </nav>
     </transition>
   </header>
@@ -93,12 +93,9 @@ const toggleDark = () => {
   align-items: center;
   padding: 1rem 2rem;
   background: var(--color-bg-secondary);
-  border-bottom: 2px solid var(--color-red);
+  border-bottom: 3px solid var(--color-red);
   position: relative;
   .logo {
-    font-weight: bold;
-    font-size: 1.3rem;
-    color: var(--color-bg);
     .img {
       width: 100px;
     }
@@ -137,6 +134,7 @@ const toggleDark = () => {
       text-decoration: none;
       color: var(--color-bg);
       font-weight: 500;
+      font-size: 18px;
       cursor: pointer;
     }
     a:hover {

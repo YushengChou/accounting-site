@@ -19,7 +19,7 @@ defineProps({
   text-align: center;
   margin: 15px 0;
   h3 {
-    font-size: 32px;
+    font-size: 36px;
   }
 }
 </style>
