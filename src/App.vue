@@ -32,7 +32,6 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-// import logo from '@/assets/img/logo.png'
 
 const menuOpen = ref(false)
 const isDesktop = ref(window.innerWidth >= 769)
@@ -98,6 +97,7 @@ const toggleDark = () => {
   .logo {
     .img {
       width: 100px;
+      height: auto;
     }
   }
   .hamburger {

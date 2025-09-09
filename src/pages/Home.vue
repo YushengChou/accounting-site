@@ -97,6 +97,9 @@ const groups = [
       justify-content: center;
       width: 50%;
       padding: 20px;
+      img {
+        object-fit: contain;
+      }
     }
     .logo-desc {
       width: 50%;
