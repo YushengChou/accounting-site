@@ -11,17 +11,27 @@
 
 <script setup>
 import BackBtn from '../components/shared/BackBtn.vue'
-import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { usePostsStore } from '@/stores/posts'
 
-const post = ref(null)
 const route = useRoute()
-const base = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL
-onMounted(async () => {
-  const res = await fetch(base + 'posts.json')
-  const posts = await res.json()
-  post.value = posts.find(p => p.id === Number(route.params.id))
+const store = usePostsStore()
+
+onMounted(() => {
+  store.fetchPosts()
 })
+const post = computed(() =>
+  store.posts.find(p => p.id === Number(route.params.id))
+)
+
+// const post = ref(null)
+// const route = useRoute()
+// const base = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL
+// onMounted(async () => {
+//   const res = await fetch(base + 'posts.json')
+//   const posts = await res.json()
+//   post.value = posts.find(p => p.id === Number(route.params.id))
+// })
 
 </script>
 
