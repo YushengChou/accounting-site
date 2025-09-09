@@ -11,7 +11,6 @@
 <script setup>
 import BackBtn from '../components/shared/BackBtn.vue'
 import PostCard from '../components/PostCard.vue'
-import { usePostsStore } from '@/stores/posts'
 
 const store = usePostsStore()
 

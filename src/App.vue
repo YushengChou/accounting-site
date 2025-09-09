@@ -31,8 +31,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-
 const menuOpen = ref(false)
 const isDesktop = ref(window.innerWidth >= 769)
 

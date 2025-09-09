@@ -14,6 +14,7 @@ export default defineConfig({
         'vue-router', // useRouter、useRoute...
         '@vueuse/core', // 引入 VueUse 函數
       ],
+      dirs: ['./src/router', './src/stores/**'], // 指定自動導入的目錄 /** 代表遞歸子目錄
     }),
   ],
   resolve: {

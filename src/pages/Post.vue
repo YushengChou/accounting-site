@@ -11,8 +11,6 @@
 
 <script setup>
 import BackBtn from '../components/shared/BackBtn.vue'
-import { useRoute } from 'vue-router'
-import { usePostsStore } from '@/stores/posts'
 
 const route = useRoute()
 const store = usePostsStore()

@@ -14,7 +14,7 @@ export const usePostsStore = defineStore('posts', {
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`
       const res = await fetch(url)
       const data = await res.json()
-      this.posts = data.values.slice(1).map((row, i) => ({
+      this.posts = data.values.slice(1).reverse().map((row, i) => ({
         id: i + 1,
         title: row[0],
         summary: row[1],
