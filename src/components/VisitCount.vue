@@ -8,39 +8,44 @@
 const visitCount = ref(0)
 const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxJkvyjL1rGUgZAndedtQv-d4JxmlPqg0GBWglJTAGY3KxeU3X0G1HtdFrM81dSjj0Y/exec'
 
+// 先從 localStorage 讀上一次數字
+const cachedCount = localStorage.getItem('visitCount')
+if (cachedCount) {
+  visitCount.value = Number(cachedCount)
+}
+
 // 判斷今天是否已增加過
 function hasVisitedToday() {
   const lastVisit = localStorage.getItem('lastVisitDate')
-  // .toISOString()會把日期轉成 ISO 8601 字串，用 'T' 把字串切成兩段，取第一項
   const today = new Date().toISOString().split('T')[0]
   return lastVisit === today
 }
-
+// 今天沒訪問過會儲存日期
 function markVisitedToday() {
   const today = new Date().toISOString().split('T')[0]
   localStorage.setItem('lastVisitDate', today)
 }
-
-// 增加瀏覽人次
-async function addVisit() {
+// 更新 Web App
+async function updateVisit() {
   try {
+    let data
     if (!hasVisitedToday()) {
       const res = await fetch(WEBAPP_URL, { method: 'POST' })
-      const data = await res.json()
-      visitCount.value = data.visitCount
+      data = await res.json()
       markVisitedToday()
     } else {
-      // 已增加過，直接讀最新值
       const res = await fetch(WEBAPP_URL)
-      const data = await res.json()
-      visitCount.value = data.visitCount
+      data = await res.json()
     }
+    visitCount.value = data.visitCount
+    // 更新 localStorage 快取
+    localStorage.setItem('visitCount', data.visitCount)
   } catch (err) {
-    console.error('操作失敗', err)
+    console.error('更新失敗', err)
   }
 }
 
 onMounted(() => {
-  addVisit()
+  updateVisit()
 })
 </script>
