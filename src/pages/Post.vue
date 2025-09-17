@@ -1,11 +1,15 @@
 <template>
   <div>
     <BackBtn></BackBtn>
-    <div class="container" v-if="post">
-      <img v-if="post.img" :src="`/images/${post.img}`" width="200" />
-      <h1>{{ post.title }}</h1>
-      <p class="date">{{ post.date }}</p>
-      <p>{{ post.content }}</p>
+    <div class="post" v-if="post">
+      <div class="container">
+        <h1>{{ post.title }}</h1>
+        <p class="date">{{ post.date }}</p>
+        <div v-if="post.img" class="img-inside">
+          <img :src="getImgUrl(post.img)" class="img" />
+        </div>
+        <p>{{ post.content }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -23,10 +27,10 @@ const post = computed(() =>
   store.posts.find(p => p.id === Number(route.params.id))
 )
 
-// function getImgUrl(fileName) {
-//   // 假設所有圖都放在 src/assets/images
-//   return new URL(`../assets/images/${fileName}`, import.meta.url).href
-// }
+function getImgUrl(fileName) {
+  // 假設所有圖都放在 src/assets/images
+  return new URL(`../assets/images/${fileName}`, import.meta.url).href
+}
 
 // const post = ref(null)
 // const route = useRoute()
@@ -40,15 +44,25 @@ const post = computed(() =>
 </script>
 
 <style scoped lang="scss">
-.container {
+.post {
   max-width: 1200px;
   margin: auto;
   padding: 2rem;
   color: var(--color-text-secondary);
-}
-.date {
-  font-size: 0.9rem;
-  color: gray;
-  margin-bottom: 1rem;
+  .container {
+    text-align: left;
+    .img-inside {
+      display: flex;
+      justify-content: center;
+      .img {
+        width: 80%;
+      }
+    }
+    .date {
+      font-size: 0.9rem;
+      color: gray;
+      margin-bottom: 1rem;
+    }
+  }
 }
 </style>
