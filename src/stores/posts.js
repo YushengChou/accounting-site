@@ -21,7 +21,7 @@ export const usePostsStore = defineStore('posts', {
         content: row[2],
         date: row[3],
         // 預留圖片 必須為網址或是放在public內 暫定路徑 images/xxx
-        // img: row[4]
+        img: row[4]
       }))
       this.loaded = true
     }

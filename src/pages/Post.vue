@@ -2,6 +2,7 @@
   <div>
     <BackBtn></BackBtn>
     <div class="container" v-if="post">
+      <img v-if="post.img" :src="`/public/images/${post.img}`" width="200" />
       <h1>{{ post.title }}</h1>
       <p class="date">{{ post.date }}</p>
       <p>{{ post.content }}</p>
@@ -21,6 +22,11 @@ onMounted(() => {
 const post = computed(() =>
   store.posts.find(p => p.id === Number(route.params.id))
 )
+
+// function getImgUrl(fileName) {
+//   // 假設所有圖都放在 src/assets/images
+//   return new URL(`../assets/images/${fileName}`, import.meta.url).href
+// }
 
 // const post = ref(null)
 // const route = useRoute()
