@@ -2,7 +2,7 @@
   <div>
     <BackBtn></BackBtn>
     <div class="container" v-if="post">
-      <img v-if="post.img" :src="`/public/images/${post.img}`" width="200" />
+      <img v-if="post.img" :src="`/images/${post.img}`" width="200" />
       <h1>{{ post.title }}</h1>
       <p class="date">{{ post.date }}</p>
       <p>{{ post.content }}</p>
