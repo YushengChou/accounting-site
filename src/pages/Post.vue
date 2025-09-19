@@ -3,12 +3,12 @@
     <BackBtn></BackBtn>
     <div class="post" v-if="post">
       <div class="container">
-        <h1>{{ post.title }}</h1>
+        <h2>{{ post.title }}</h2>
         <p class="date">{{ post.date }}</p>
+        <pre>{{ post.content }}</pre>
         <div v-if="post.img" class="img-inside">
           <img :src="getImgUrl(post.img)" class="img" />
         </div>
-        <p>{{ post.content }}</p>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@ const post = computed(() =>
 
 function getImgUrl(fileName) {
   // 假設所有圖都放在 src/assets/images
-  return new URL(`../assets/images/${fileName}`, import.meta.url).href
+  return new URL(`../assets/article-images/${fileName}`, import.meta.url).href
 }
 
 // const post = ref(null)
@@ -55,13 +55,22 @@ function getImgUrl(fileName) {
       display: flex;
       justify-content: center;
       .img {
-        width: 80%;
+        width: 100%;
       }
     }
     .date {
       font-size: 0.9rem;
       color: gray;
       margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: 32px;
+    }
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      font-size: 16px;
+      margin-bottom: 10px;
     }
   }
 }
