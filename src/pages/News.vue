@@ -36,6 +36,7 @@ onMounted(() => {
   color: var(--color-bg);
   h1 {
     text-align: center;
+    margin-bottom: 20px;
   }
 }
 </style>
