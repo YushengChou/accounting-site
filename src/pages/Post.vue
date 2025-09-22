@@ -71,6 +71,7 @@ function getImgUrl(fileName) {
       overflow-wrap: break-word;
       font-size: 16px;
       margin-bottom: 10px;
+      line-height: 2;
     }
   }
 }
