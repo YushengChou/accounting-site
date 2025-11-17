@@ -6,6 +6,7 @@
       <input v-model="title" placeholder="標題" />
       <input v-model="subTitle" placeholder="副標題" />
       <input v-model="imgUrl" placeholder="圖片網址" />
+      <input v-model="date" type="date" />
       <textarea v-model="content" placeholder="內文"></textarea>
       <button @click="uploadArticle">發布文章</button>
       <p v-if="msg" class="msg">{{ msg }}</p>
@@ -18,11 +19,12 @@ import { ref } from "vue";
 import { db } from "@/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-const title = ref("");
-const subTitle = ref("");
-const imgUrl = ref("");
-const content = ref("");
-const msg = ref("");
+const title = ref("")
+const subTitle = ref("")
+const imgUrl = ref("")
+const date = ref("")
+const content = ref("")
+const msg = ref("")
 
 const uploadArticle = async () => {
   if(!title.value){ msg.value="標題或內容不可空白"; return; }
@@ -30,8 +32,9 @@ const uploadArticle = async () => {
     await addDoc(collection(db, "articles"), {
       title: title.value,
       subTitle: subTitle.value,
-      content: content.value,
       imgUrl: imgUrl.value,
+
+      content: content.value,
       createdAt: serverTimestamp(),
       createdAtClient: new Date(),
     });
@@ -49,9 +52,9 @@ const uploadArticle = async () => {
 
 <style lang="scss" scoped>
 .container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 0 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 20px;

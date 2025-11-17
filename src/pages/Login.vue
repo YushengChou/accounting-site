@@ -11,7 +11,7 @@
       <p>目前登入中：{{ user.email }}</p>
       <div class="btn-inside">
         <button @click="logout" class="btn">登出</button>
-        <router-link to="/test" class="btn">前往上傳文章</router-link>
+        <router-link to="/uploadarticle" class="btn">前往上傳文章</router-link>
       </div>
     </div>
   </div>

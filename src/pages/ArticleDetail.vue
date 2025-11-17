@@ -3,7 +3,7 @@
     <h2 class="title">{{ article.title }}</h2>
     <p class="subtitle">{{ article.subTitle }}</p>
     <small class="time">
-      {{ article.createdAtClient?.toDate?.().toLocaleString() || '時間不明' }}
+      {{ article.date || '時間不明' }}
     </small>
     <pre class="content" v-html="article.content"></pre>
     <img v-if="article.imgUrl" :src="article.imgUrl" class="image" />
@@ -47,9 +47,9 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .container {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 0 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -72,7 +72,6 @@ onMounted(async () => {
 
   .image {
     width: 100%;
-    max-height: 400px;
     object-fit: cover;
     border-radius: 12px;
     margin: 16px 0;

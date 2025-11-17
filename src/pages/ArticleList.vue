@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="page-list">
     <h2 class="page-title">文章列表</h2>
 
     <div v-if="allArticles.length === 0" class="no-articles">
@@ -16,7 +16,7 @@
         <h3 class="title">{{ article.title }}</h3>
         <p class="subtitle">{{ article.subTitle }}</p>
         <small class="time">
-          {{ article.createdAtClient?.toDate?.().toLocaleString() || '時間不明' }}
+          {{ article.date || '時間不明' }}
         </small>
       </div>
     </div>
@@ -80,10 +80,10 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 0 16px;
+.page-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 24px;
