@@ -67,7 +67,7 @@ const goDetail = (id) => {
 onMounted(async () => {
   const q = query(
     collection(db, 'articles'),
-    orderBy('createdAtClient', 'desc')
+    orderBy('createdAt', 'desc')
   );
   onSnapshot(q, (querySnapshot) => {
     allArticles.value = querySnapshot.docs.map(doc => ({
