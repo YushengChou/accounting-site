@@ -3,6 +3,7 @@ import InfoSection from '../components/InfoSection.vue'
 import AboutUs from '../components/AboutUs.vue'
 import Contact from '../components/Contact.vue'
 import VisitCount from '../components/VisitCount.vue'
+import PageViews from '../components/PageViews.vue'
 const coreValues = [
   {
     categories: [
@@ -84,7 +85,8 @@ const groups = [
     <!-- 聯絡我們 -->
     <Contact title="聯絡我們"></Contact>
     <!-- 瀏覽人次 -->
-    <VisitCount></VisitCount>
+    <!-- <VisitCount></VisitCount> -->
+    <PageViews></PageViews>
   </div>
 </template>
 

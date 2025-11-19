@@ -5,6 +5,7 @@
 </template>
 
 <script setup>
+// google試算表的方式
 const visitCount = ref(0)
 const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxJkvyjL1rGUgZAndedtQv-d4JxmlPqg0GBWglJTAGY3KxeU3X0G1HtdFrM81dSjj0Y/exec'
 

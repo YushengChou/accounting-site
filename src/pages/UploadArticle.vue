@@ -61,7 +61,7 @@ const uploadImage = async (e) => {
 };
 
 const uploadArticle = async () => {
-  if(!title.value || !subTitle.value || !imgUrl.value || !date.value || !content.value ){ msg.value="內容尚未填寫完整"; return; }
+  if(!title.value || !subTitle.value || !date.value || !content.value ){ msg.value="內容尚未填寫完整"; return; }
   try {
     await addDoc(collection(db, "articles"), {
       title: title.value,
