@@ -10,7 +10,7 @@
 - 響應式設計，適用桌機與行動裝置
 
 ## 📸 預覽 Screenshots
-![和得會計師事務所](public/img/logo-name.png)
+![和得會計師事務所](src/assets/img/logo-name.png)
 
 ## 🚀 安裝 Installation
 ```bash
