@@ -1,5 +1,6 @@
 <template>
   <div class="page-list">
+    <BackBtn></BackBtn>
     <h2 class="page-title">文章列表</h2>
 
     <div v-if="allArticles.length === 0" class="no-articles">
@@ -33,6 +34,7 @@
 </template>
 
 <script setup>
+import BackBtn from '../components/shared/BackBtn.vue'
 import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { collection, orderBy, query, onSnapshot } from 'firebase/firestore';

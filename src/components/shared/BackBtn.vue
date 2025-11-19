@@ -16,7 +16,6 @@ const goBack = () => {
 <style scoped lang="scss">
 .btn {
   max-width: 1200px;
-  margin: 0 auto;
   padding: 20px;
   .back-btn {
     color: var(--color-bg);

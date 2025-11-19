@@ -1,5 +1,6 @@
 <template>
   <div class="container" v-if="article">
+    <BackBtn></BackBtn>
     <h2 class="title">{{ article.title }}</h2>
     <p class="subtitle">{{ article.subTitle }}</p>
     <small class="time">
@@ -16,6 +17,7 @@
 </template>
 
 <script setup>
+import BackBtn from '../components/shared/BackBtn.vue'
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { doc, getDoc } from 'firebase/firestore';
