@@ -6,7 +6,6 @@
     <div class="form-card">
       <input v-model="title" placeholder="標題" />
       <input v-model="subTitle" placeholder="副標題" />
-      <!-- <input v-model="imgUrl" placeholder="圖片網址" /> -->
       <input type="file" accept="image/*" @change="uploadImage" ref="fileInput" />
       <input v-model="imgUrl" placeholder="圖片網址（上傳成功自動產生）" readonly />
       <input v-model="date" type="date" min="2025-01-01" />
@@ -16,14 +15,27 @@
      <img
       v-if="imgUrl" :src="imgUrl" class="previewImg" alt="預覽圖片"
     />
+    <Toast
+      v-model:visible="toastVisible"
+      :message="toastMessage"
+    />
   </div>
 </template>
 
 <script setup>
 import BackBtn from '../components/shared/BackBtn.vue'
+import Toast from "@/components/shared/Toast.vue";
 import { ref } from "vue";
 import { db } from "@/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+const toastVisible = ref(false);
+const toastMessage = ref("");
+
+const showToast = (msg) => {
+  toastMessage.value = msg;
+  toastVisible.value = true;
+};
 
 const title = ref("")
 const subTitle = ref("")
@@ -61,7 +73,7 @@ const uploadImage = async (e) => {
 };
 
 const uploadArticle = async () => {
-  if(!title.value || !subTitle.value || !date.value || !content.value ){ msg.value="內容尚未填寫完整"; return; }
+  if(!title.value || !subTitle.value || !date.value || !content.value ){ showToast("內容尚未填寫完整"); return; }
   try {
     await addDoc(collection(db, "articles"), {
       title: title.value,
@@ -71,8 +83,7 @@ const uploadArticle = async () => {
       content: content.value,
       createdAt: serverTimestamp(),
     });
-
-    msg.value = "文章上傳成功！"
+    showToast("文章上傳成功！")
     title.value = ""
     subTitle.value = ""
     fileInput.value.value = "";
@@ -80,7 +91,7 @@ const uploadArticle = async () => {
     date.value = ""
     content.value = ""
   } catch (e) {
-    msg.value = e.message;
+    showToast(e.message)
   }
 }
 </script>

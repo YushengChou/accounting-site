@@ -23,7 +23,7 @@
     </div>
 
     <!-- 分頁控制 -->
-    <div class="pagination">
+    <div class="pagination" v-if="totalPages !== 1 && totalPages !== 0">
       <button @click="prevPage" :disabled="currentPage === 1">上一頁</button>
       <span>第 {{ currentPage }} / {{ totalPages }} 頁</span>
       <button @click="nextPage" :disabled="currentPage === totalPages">
@@ -43,7 +43,7 @@ import { db } from '@/firebase';
 const router = useRouter();
 
 const allArticles = ref([]);
-const pageLimit = 5;
+const pageLimit = 10;
 const currentPage = ref(1);
 const totalPages = ref(1);
 
@@ -69,6 +69,7 @@ const goDetail = (id) => {
 onMounted(async () => {
   const q = query(
     collection(db, 'articles'),
+    orderBy('date', 'desc'),
     orderBy('createdAt', 'desc')
   );
   onSnapshot(q, (querySnapshot) => {
