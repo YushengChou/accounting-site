@@ -1,7 +1,7 @@
 <template>
   <div class="page-list">
     <BackBtn></BackBtn>
-    <h2 class="page-title">文章列表</h2>
+    <h2 class="page-title">最新消息</h2>
 
     <div v-if="allArticles.length === 0" class="no-articles">
       目前沒有文章
