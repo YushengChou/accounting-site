@@ -14,11 +14,16 @@
         class="article-card"
         @click="goDetail(article.id)"
       >
-        <h3 class="title">{{ article.title }}</h3>
-        <p class="subtitle">{{ article.subTitle }}</p>
-        <small class="time">
-          {{ article.date || '時間不明' }}
-        </small>
+        <div>
+          <h3 class="title">{{ article.title }}</h3>
+          <p class="subtitle">{{ article.subTitle }}</p>
+          <small class="time">
+            {{ article.date || '時間不明' }}
+          </small>
+        </div>
+        <div>
+          <img v-if="article.imgUrl" :src="article.imgUrl" :alt="article.title">
+        </div>
       </div>
     </div>
 
@@ -109,6 +114,9 @@ onMounted(async () => {
     gap: 16px;
 
     .article-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background: #fff;
       border-radius: 12px;
       padding: 16px 20px;
@@ -137,6 +145,11 @@ onMounted(async () => {
       .time {
         font-size: 0.85rem;
         color: #999;
+      }
+
+      img {
+        max-width: 130px;
+        max-height: 130px;
       }
     }
   }

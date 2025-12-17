@@ -15,10 +15,10 @@
 
       <!-- 段落 / 標題 -->
       <select @change="changeBlock($event)">
+        <option value="h1">大標題</option>
+        <option value="h2">中標題</option>
+        <option value="h3">小標題</option>
         <option value="paragraph">段落</option>
-        <option value="h1">標題 1</option>
-        <option value="h2">標題 2</option>
-        <option value="h3">標題 3</option>
       </select>
 
       <!-- 表格行列數輸入 -->
@@ -60,7 +60,7 @@ const editor = useEditor({
     TableHeader,
     TableCell,
   ],
-  content: '編輯區域',
+  content: '輸入內容',
 })
 
 defineExpose({
