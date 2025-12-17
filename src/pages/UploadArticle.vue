@@ -5,11 +5,12 @@
     <p v-if="msg" class="msg">{{ msg }}</p>
     <div class="form-card">
       <input v-model="title" placeholder="標題" />
-      <input v-model="subTitle" placeholder="副標題" />
+      <input v-model="subTitle" placeholder="副標題(選填)" />
       <input type="file" accept="image/*" @change="uploadImage" ref="fileInput" />
       <input v-model="imgUrl" placeholder="圖片網址（上傳成功自動產生）" readonly />
       <input v-model="date" type="date" min="2025-01-01" />
-      <textarea v-model="content" placeholder="內文"></textarea>
+      <!-- <textarea v-model="content" placeholder="內文"></textarea> -->
+      <TipTap ref="editorRef"></TipTap>
       <button @click="uploadArticle">發布文章</button>
     </div>
      <img
@@ -25,6 +26,7 @@
 <script setup>
 import BackBtn from '../components/shared/BackBtn.vue'
 import Toast from "@/components/shared/Toast.vue";
+import TipTap from "@/components/shared/TipTap.vue";
 import { ref } from "vue";
 import { db } from "@/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -37,12 +39,13 @@ const showToast = (msg) => {
   toastVisible.value = true;
 };
 
+const editorRef = ref(null)
 const title = ref("")
 const subTitle = ref("")
 const fileInput = ref(null);
 const imgUrl = ref("")
 const date = ref("")
-const content = ref("")
+// const content = ref("")
 const msg = ref("")
 
 const API_KEY = '0c60c52ce46382fde56330eba5f303b2'
@@ -73,14 +76,16 @@ const uploadImage = async (e) => {
 };
 
 const uploadArticle = async () => {
-  if(!title.value || !subTitle.value || !date.value || !content.value ){ showToast("內容尚未填寫完整"); return; }
+  const contentHTML = editorRef.value.getHTML()
+  const plainText = editorRef.value.getText() 
+  if(!title.value || !date.value || !plainText.trim() ){ showToast("內容尚未填寫完整"); return; }
   try {
     await addDoc(collection(db, "articles"), {
       title: title.value,
       subTitle: subTitle.value,
       imgUrl: imgUrl.value,
       date: date.value,
-      content: content.value,
+      content: contentHTML,
       createdAt: serverTimestamp(),
     });
     showToast("文章上傳成功！")
@@ -89,7 +94,7 @@ const uploadArticle = async () => {
     fileInput.value.value = "";
     imgUrl.value = ""
     date.value = ""
-    content.value = ""
+    editorRef.value.clearContent() // 清空 TipTap
   } catch (e) {
     showToast(e.message)
   }

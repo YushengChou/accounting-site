@@ -6,7 +6,7 @@
     <small class="time">
       {{ article.date || '時間不明' }}
     </small>
-    <pre class="content" v-html="article.content"></pre>
+    <div class="content" v-html="article.content"></div>
     <img v-if="article.imgUrl" :src="article.imgUrl" class="image" />
     <button class="back-btn" @click="goBack">返回列表</button>
   </div>
@@ -85,6 +85,32 @@ onMounted(async () => {
     font-size: 16px;
     margin-bottom: 10px;
     line-height: 2;
+
+    :deep(table) {
+      border-collapse: collapse;
+      margin: 1em 0;
+    }
+
+    :deep(th),
+    :deep(td) {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: left;
+    }
+
+    /* 粗斜底線字 */
+    :deep(strong) {
+      font-weight: bold;
+    }
+
+    :deep(em) {
+      font-style: italic;
+    }
+
+    :deep(u) {
+      text-decoration: underline;
+    }
+
   }
 
   .back-btn {

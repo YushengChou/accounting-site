@@ -43,7 +43,7 @@ import { db } from '@/firebase';
 const router = useRouter();
 
 const allArticles = ref([]);
-const pageLimit = 10;
+const pageLimit = 5;
 const currentPage = ref(1);
 const totalPages = ref(1);
 
