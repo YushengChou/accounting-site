@@ -176,7 +176,9 @@ const changeBlock = (e) => {
     }
 
     :deep(table) {
+      overflow-x: auto;
       border-collapse: collapse;
+      margin: 0 auto;
     }
 
     :deep(td),
