@@ -80,6 +80,11 @@ onMounted(async () => {
     margin: 16px 0;
   }
 
+  .video {
+    display: flex;
+    justify-content: center;
+  }
+
   .content {
     white-space: pre-wrap;
     overflow-wrap: break-word;
