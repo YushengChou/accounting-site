@@ -94,7 +94,7 @@ onMounted(async () => {
 
     :deep(table) {
       border-collapse: collapse;
-      margin: 1em 0;
+      margin: 1em auto;
     }
 
     :deep(th),
