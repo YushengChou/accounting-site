@@ -72,7 +72,7 @@ const login = async () => {
   }
   try {
     await signInWithEmailAndPassword(auth, email.value, password.value)
-    const redirect = route.query.redirect || '/'
+    const redirect = route.query.redirect || '/uploadArticle'
     router.replace(redirect)
   } catch (e) {
     if (e.code === "auth/invalid-credential" || e.code === "auth/wrong-password") {
