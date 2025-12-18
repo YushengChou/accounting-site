@@ -6,6 +6,7 @@
     <div class="form-card">
       <input v-model="title" placeholder="標題" />
       <input v-model="subTitle" placeholder="副標題(選填)" />
+      <input v-model="videoLink" placeholder="影片嵌入(選填)" />
       <input type="file" accept="image/*" @change="uploadImage" ref="fileInput" />
       <input v-model="imgUrl" placeholder="圖片網址（上傳成功自動產生）" readonly />
       <input v-model="date" type="date" min="2025-01-01" />
@@ -42,7 +43,8 @@ const showToast = (msg) => {
 const editorRef = ref(null)
 const title = ref("")
 const subTitle = ref("")
-const fileInput = ref(null);
+const videoLink = ref("")
+const fileInput = ref(null)
 const imgUrl = ref("")
 const date = ref("")
 // const content = ref("")
@@ -52,18 +54,18 @@ const API_KEY = '0c60c52ce46382fde56330eba5f303b2'
 
 // 上傳圖片 → ImgBB → 拿網址
 const uploadImage = async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+  const file = e.target.files[0]
+  if (!file) return
 
   msg.value = "圖片上傳中...";
 
-  const formData = new FormData();
-  formData.append("image", file);
+  const formData = new FormData()
+  formData.append("image", file)
 
   const res = await fetch(`https://api.imgbb.com/1/upload?key=${API_KEY}`, {
     method: 'POST',
     body: formData
-  });
+  })
 
   const data = await res.json()
   if (data.success) {
@@ -83,6 +85,7 @@ const uploadArticle = async () => {
     await addDoc(collection(db, "articles"), {
       title: title.value,
       subTitle: subTitle.value,
+      videoLink: videoLink.value,
       imgUrl: imgUrl.value,
       date: date.value,
       content: contentHTML,
@@ -91,7 +94,8 @@ const uploadArticle = async () => {
     showToast("文章上傳成功！")
     title.value = ""
     subTitle.value = ""
-    fileInput.value.value = "";
+    videoLink.value = ""
+    fileInput.value.value = ""
     imgUrl.value = ""
     date.value = ""
     editorRef.value.clearContent() // 清空 TipTap

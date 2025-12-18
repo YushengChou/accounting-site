@@ -29,6 +29,7 @@
 
     <!-- Editor -->
     <EditorContent :editor="editor" class="editor" />
+    <span v-show="isEditorEmpty" class="tip">請輸入內容...</span>
   </div>
 </template>
 
@@ -60,7 +61,12 @@ const editor = useEditor({
     TableHeader,
     TableCell,
   ],
-  content: '輸入內容',
+  content: '',
+})
+
+// 判斷是否沒輸入內容
+const isEditorEmpty = computed(() => {
+  return editor.value?.isEmpty === true
 })
 
 defineExpose({
@@ -102,9 +108,18 @@ const changeBlock = (e) => {
 
 <style scoped lang="scss">
 .editor-wrapper {
+  position: relative;
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
+
+  .tip {
+    position: absolute;
+    left: 25px;
+    top: 70px;
+    pointer-events: none;
+    color: #b0b0b0;
+  }
 
   .toolbar {
     display: flex;
@@ -139,7 +154,11 @@ const changeBlock = (e) => {
 
   .editor {
     padding: 16px;
-    min-height: 300px;
+    min-height: 200px;
+
+    :deep(.tiptap.ProseMirror) {
+      min-height: 200px;
+    }
 
     :deep(table) {
       border-collapse: collapse;

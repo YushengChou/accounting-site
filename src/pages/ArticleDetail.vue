@@ -7,6 +7,7 @@
       {{ article.date || '時間不明' }}
     </small>
     <div class="content" v-html="article.content"></div>
+    <div class="video" v-html="article.videoLink"></div>
     <img v-if="article.imgUrl" :src="article.imgUrl" class="image" />
     <button class="back-btn" @click="goBack">返回列表</button>
   </div>
