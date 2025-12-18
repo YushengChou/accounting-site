@@ -35,6 +35,11 @@ import { ref, onMounted } from "vue";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import Toast from "@/components/shared/Toast.vue";
 
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+
 const toastVisible = ref(false);
 const toastMessage = ref("");
 
@@ -66,7 +71,9 @@ const login = async () => {
     return
   }
   try {
-    await signInWithEmailAndPassword(auth, email.value, password.value);
+    await signInWithEmailAndPassword(auth, email.value, password.value)
+    const redirect = route.query.redirect || '/'
+    router.replace(redirect)
   } catch (e) {
     if (e.code === "auth/invalid-credential" || e.code === "auth/wrong-password") {
       showToast("帳號或密碼錯誤，請重新輸入")
