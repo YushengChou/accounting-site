@@ -120,6 +120,21 @@ const changeBlock = (e) => {
     pointer-events: none;
     color: #b0b0b0;
   }
+  @media (max-width: 768px) {
+    .tip {
+      top: 100px;
+    }
+  }
+  @media (max-width: 454px) {
+    .tip {
+      top: 140px;
+    }
+  }
+  @media (max-width: 328px) {
+    .tip {
+      top: 190px;
+    }
+  }
 
   .toolbar {
     display: flex;
