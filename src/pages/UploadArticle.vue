@@ -98,6 +98,7 @@ const uploadArticle = async () => {
     fileInput.value.value = ""
     imgUrl.value = ""
     date.value = ""
+    msg.value = ""
     editorRef.value.clearContent() // 清空 TipTap
   } catch (e) {
     showToast(e.message)
